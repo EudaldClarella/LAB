@@ -1,6 +1,5 @@
 #include "pieces.h"
 
-<<<<<<< HEAD
 void init_piece(Piece *p){
 	for(int c = 0; c <= PIECE_SIZE; c++){
         for(int r = 0; r <= PIECE_SIZE; r++){
