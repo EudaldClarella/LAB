@@ -1,5 +1,6 @@
 #include "pieces.h"
 
+<<<<<<< HEAD
 void init_piece(Piece *p){
 	for(int c = 0; c <= PIECE_SIZE; c++){
         for(int r = 0; r <= PIECE_SIZE; r++){
@@ -21,51 +22,65 @@ void print_piece(Piece p){
 }
 
 void rotate_clockwise(Piece *p) {
-    Piece temp;
-    init_piece(&temp);
-    temp.rows = p->cols;
-    temp.cols = p->rows;
-    temp.name = p->name;
+    char temp[PIECE_SIZE][PIECE_SIZE];
 
+    // Perform rotation
     for (int r = 0; r < p->rows; r++) {
         for (int c = 0; c < p->cols; c++) {
-            temp.board[c][p->rows - 1 - r] = p->board[r][c];
+            temp[c][p->rows - 1 - r] = p->board[r][c];
         }
     }
-    
-    *p = temp;  // Copy temp back to p
+
+    // Swap rows and cols
+    int temp_size = p->rows;
+    p->rows = p->cols;
+    p->cols = temp_size;
+
+    // Copy back rotated values
+    for (int r = 0; r < p->rows; r++) {
+        for (int c = 0; c < p->cols; c++) {
+            p->board[r][c] = temp[r][c];
+        }
+    }
 }
 
 void rotate_counter_clockwise(Piece *p) {
-    Piece temp;
-    init_piece(&temp);
-    temp.rows = p->cols;
-    temp.cols = p->rows;
-    temp.name = p->name;
+    char temp[PIECE_SIZE][PIECE_SIZE];
 
+    // Perform rotation
     for (int r = 0; r < p->rows; r++) {
         for (int c = 0; c < p->cols; c++) {
-            temp.board[p->cols - 1 - c][r] = p->board[r][c];
+            temp[p->cols - 1 - c][r] = p->board[r][c];
         }
     }
-    
-    *p = temp;  // Copy temp back to p
+
+    // Swap rows and cols
+    int temp_size = p->rows;
+    p->rows = p->cols;
+    p->cols = temp_size;
+
+    // Copy back rotated values
+    for (int r = 0; r < p->rows; r++) {
+        for (int c = 0; c < p->cols; c++) {
+            p->board[r][c] = temp[r][c];
+        }
+    }
 }
 
 Piece make_O(){
     Piece piece;
     init_piece(&piece);
     piece.name = 'O'; piece.rows = piece.cols = 2;
-    piece.board[0][0] = '0'; piece.board[0][1] = '0';
-    piece.board[1][0] = '0'; piece.board[1][1] = '0';
+    piece.board[0][0] = '#'; piece.board[0][1] = '#';
+    piece.board[1][0] = '#'; piece.board[1][1] = '#';
     return piece;
 }
 
 Piece make_I(){
     Piece piece;
     init_piece(&piece); piece.rows =4; piece.cols = 1;
-    piece.name = 'I'; piece.board[0][0] = '0'; piece.board[0][1] = '0';
-    piece.board[0][2] = '0'; piece.board[0][3] = '0';
+    piece.name = 'I'; piece.board[0][0] = '#'; piece.board[0][1] = '#';
+    piece.board[0][2] = '#'; piece.board[0][3] = '#';
     return piece;    
 }
 
@@ -73,8 +88,8 @@ Piece make_I(){
 Piece make_S(){
     Piece piece;
     init_piece(&piece); piece.rows =2; piece.cols = 3;
-    piece.name = 'S'; piece.board[0][0] = '0'; piece.board[1][0] = '0';
-    piece.board[1][1] = '0'; piece.board[2][1] = '0';
+    piece.name = 'S'; piece.board[0][0] = '#'; piece.board[1][0] = '#';
+    piece.board[1][1] = '#'; piece.board[2][1] = '#';
     return piece; 
 }
 
@@ -82,32 +97,32 @@ Piece make_S(){
 Piece make_Z(){
     Piece piece;
     init_piece(&piece); piece.rows =2; piece.cols = 3;
-    piece.name = 'Z'; piece.board[0][1] = '0'; piece.board[1][1] = '0';
-    piece.board[1][0] = '0'; piece.board[2][0] = '0';
+    piece.name = 'Z'; piece.board[0][1] = '#'; piece.board[1][1] = '#';
+    piece.board[1][0] = '#'; piece.board[2][0] = '#';
     return piece; 
 }
 
 Piece make_L(){
     Piece piece;
     init_piece(&piece); piece.rows = 3; piece.cols = 2;
-    piece.name = 'L'; piece.board[0][0] = '0'; piece.board[0][1] = '0';
-    piece.board[0][2] = '0'; piece.board[1][0] = '0';
+    piece.name = 'L'; piece.board[0][0] = '#'; piece.board[0][1] = '#';
+    piece.board[0][2] = '#'; piece.board[1][0] = '#';
     return piece; 
 }
 
 Piece make_J(){
     Piece piece;
     init_piece(&piece); piece.rows = 3; piece.cols = 2;
-    piece.name = 'J'; piece.board[0][0] = '0'; piece.board[1][0] = '0';
-    piece.board[1][1] = '0'; piece.board[1][2] = '0';
+    piece.name = 'J'; piece.board[0][0] = '#'; piece.board[1][0] = '#';
+    piece.board[1][1] = '#'; piece.board[1][2] = '#';
     return piece; 
 }
 
 Piece make_T(){
     Piece piece;
     init_piece(&piece); piece.rows = 2; piece.cols = 3;
-    piece.name = 'T'; piece.board[0][1] = '0'; piece.board[1][1] = '0';
-    piece.board[1][0] = '0'; piece.board[2][1] = '0';
+    piece.name = 'T'; piece.board[0][1] = '#'; piece.board[1][1] = '#';
+    piece.board[1][0] = '#'; piece.board[2][1] = '#';
     return piece; 
 }
 
@@ -122,3 +137,4 @@ void rotate_clockwise(Piece *p){
     (*p).rows = (*p).cols;
     (*p).cols = aux;
 }
+>>>>>>> 2342635838cd5d60e6450c7422b5c61fe2477b97
